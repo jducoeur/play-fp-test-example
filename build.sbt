@@ -7,11 +7,14 @@ lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
 scalaVersion := "2.12.8"
 
-libraryDependencies += guice
-libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "4.0.1" % Test
+libraryDependencies ++= Seq(
+  guice,
+  "org.scalatestplus.play" %% "scalatestplus-play" % "4.0.1" % Test,
+  "com.softwaremill.macwire" %% "macros" % "2.3.1" % "provided"
+)
 
-// Adds additional packages into Twirl
-//TwirlKeys.templateImports += "org.querki.controllers._"
-
-// Adds additional packages into conf/routes
-// play.sbt.routes.RoutesKeys.routesImport += "org.querki.binders._"
+scalacOptions ++= Seq(
+  "-feature",
+  "-deprecation",
+  "-Xfatal-warnings"
+)
